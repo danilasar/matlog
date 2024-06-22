@@ -1,6 +1,62 @@
 \section{Логическая равносильность}
 \subsection{Интерпретация формул алгебры предикатов}
+\dftion \textbf{Область интерпретации} --- непустое множество $M$, которое является областью возможных значений всех предметных переменных.
+\dftion \textbf{Оценка} предметных переменных --- $\alpha: X \to M$, где $X$ --- множество всех предметных переменных, $M$ --- область интерпретации.
+\dftion \textbf{Выполнимость} формулы $\Phi$ в интерпретации $M$ при оценке $\alpha$ обозначается $M \vDash_\alpha \Phi$ и означает, что формула $\Phi$ истинна в интерпретации $M$ при оценке $\alpha$.
 \subsection{Тавтологии алгебры предикатов}
+\dftion  $\Phi$ является:
+\begin{itemize}
+    \item \textit{общезначимой} (тождественно истинной, общезначимой), если $M \vDash_\alpha \Phi$ в любых интерпретациях $M$ при любых оценках $\alpha$. обозначается как $\vDash \Phi$;
+    \item \textit{выполнимой}, если $M \vDash_\alpha \Phi$ в некоторой $M$ при некоторой $\alpha$
+    \item \textit{опровержимой}, если в некоторой $M$ при некоторой $\alpha$ неверно, что $M \vDash_\alpha \Phi$
+    \item \textit{тождественно ложной}, если в любой $M$ для любой $\alpha$ неверно, что $M \vDash_\alpha \Phi$
+\end{itemize}
+
+Любая тавтология алгебры высказываний ялвяется тавтологией алгебры предикатов.
+
+\textbf{Лемма 1}. Если $\Phi(X_1, \dots, X_n)$ --- тавтология алгебры высказываний, то для любых формул алгебры предикатов $\Phi_1, \dots, \Phi_n$ формула $\Phi(\Phi_1, \dots, \Phi_n)$ является тавтологией алгебры предикатов.
+
+\textbf{Лемма 2}. Для любых формул $\Phi, \Psi$ следующие формулы являются тавтологиями:
+\begin{enumerate}
+    \item $\lnot(\forall x)\Phi \eq (\exists x)(\lnot \Phi)$ \\
+    $\lnot(\exists x)\Phi \eq (\forall x)(\lnot x)$
+
+    \item $(\forall x)(\forall y) \eq (\forall y)(\forall x)$ \\
+    $(\exists x)(\forall y) \then (\forall y)(\exists x)$
+
+    \item $(\forall x)(\Phi \land \Psi) \eq (\forall x)\Phi \land (\forall x)\Psi$
+
+    $(\exists x)(\Phi \lor \Psi) \eq (\exists x)\Phi \lor (\exists x)\Psi$ \\
+
+    \item Если $\pi \in \{\land, \lor\}$, а $x$ в $\Psi$ не входит свободно: \\
+    $(\forall x)(\Phi \pi \Psi) \eq (\forall x)\Phi \pi \Psi$ \\
+    $(\exists x)(\Phi \pi \Psi) \eq (\exists x)\Phi \pi \Psi$
+\end{enumerate}
 \subsection{Логическая равносильность формул алгебры предикатов}
+\dftion Формулы алгебры предикатов $\Phi, \Psi$ называются логически равносильными ($\Phi = \Psi$, $\Phi \eq \Psi$) тогда и только тогда, когда $\vDash \Phi \eq \Psi$.
+
+\textbf{Теорема 1 (взаимосвязь между кванторами)}.
+$$(\forall x)(\forall y)\Phi = (\forall y)(\forall x)$$
+$$(\exists x)(\exists y)\Phi = (\exists y)(\exists x)$$
+Если $x, y$ не входят в $\Phi$ свободно, то $(\forall x)(\exists y)\Phi = (\exists y)(\forall x)\Phi$
+
+\textbf{Теорема 2}. Имя предметной переменной при кванторе можно поменять при условии, что переменной с новым именем не содержится в формуле $\Phi$.
+
+\textbf{Теорема 3 (законы де Моргана для кванторов)}.
+$$\lnot (\forall x) \Phi = (\exists x)\lnot \Phi$$
+$$\lnot (\exists x) \Phi = (\forall x)\lnot \Phi$$
+
+\textbf{Теорема 4 (взаимосвязь кванторов с конхюнкцией и дизъюнкцией)}.
+$$(\forall x)(\Phi \land \Psi) \eq (\forall x)\Phi \land (\forall x)\Psi$$
+$$(\exists x)(\Phi \lor \Psi) \eq (\exists x)\Phi \lor (\exists x)\Psi$$
+
+\textbf{Теорема 5 (взаимосвязь кванторов с импликацией)}. Если в $\Phi$ предметная переменная $x$ не входит свободно, то
+$$(\forall x)(\Phi \then \Psi) = \Phi \then (\forall x)\Psi$$
+$$(\exists x)(\Phi \then \Psi) = \Phi \then (\exists x)\Psi$$
+Если в $\Psi$ предметная переменная $x$ не входит свободно, то
+$$(\forall x)(\Phi \then \Psi) = (\exists x)\Phi \then \Psi$$
+$$(\exists x)(\Phi \then \Psi) = (\forall x)\Phi \then \Psi$$
+
+
 \subsection{Свойства логических операций над предикатами}
 \subsection{Логическое следование формул алгебры предикатов}

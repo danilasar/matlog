@@ -11,6 +11,11 @@
 \usepackage{makecell}
 \usepackage{multirow}
 \usepackage[english,russian]{babel}
+\usepackage{cancel}
+\usepackage[table]{xcolor}
+
+
+\usepackage{forloop}
 
 \usepackage{tempora}
 \usepackage[hidelinks]{hyperref}
@@ -25,8 +30,20 @@
 
 \usepackage{mathrsfs}
 
+%\usepackage[%
+%    left=0.50in,%
+%    right=0.50in,%
+%    top=1.0in,%
+%    bottom=1.0in,%
+%    paperheight=11in,%
+%    paperwidth=8.5in%
+%]{geometry}%
+
+\usepackage{adjustbox}
+
 \newcommand{\dftion}{{\bf Определение.}\,}
+\newcommand{\ex}{{\bf Пример.}\,}
 \newcommand{\then}{\Rightarrow}
 \newcommand{\eq}{\Leftrightarrow}
 \newcommand{\bydf}{\overset{df}{\Leftrightarrow}}
-\newcommand{\ex}{{\bf Пример.}\,}
+\newcommand{\xses}[1][x]{#1_1,\dots,#1_n}
