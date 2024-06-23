@@ -1,1 +1,26 @@
-\section{ЛОгическое равенство формул алгебры предикатов. Свойства логических операций над предикатами}
+\section{Логическое равенство формул алгебры предикатов. Свойства логических операций над предикатами}
+\dftion Формулы алгебры предикатов $\Phi, \Psi$ называются логически равносильными ($\Phi = \Psi$, $\Phi \eq \Psi$) тогда и только тогда, когда $\vDash \Phi \eq \Psi$.
+
+\textbf{Теорема 1 (взаимосвязь между кванторами)}.
+$$(\forall x)(\forall y)\Phi = (\forall y)(\forall x)$$
+$$(\exists x)(\exists y)\Phi = (\exists y)(\exists x)$$
+Если $x, y$ не входят в $\Phi$ свободно, то $(\forall x)(\exists y)\Phi = (\exists y)(\forall x)\Phi$
+
+\textbf{Теорема 2}. Имя предметной переменной при кванторе можно поменять при условии, что переменной с новым именем не содержится в формуле $\Phi$.
+
+\textbf{Теорема 3 (законы де Моргана для кванторов)}.
+$$\lnot (\forall x) \Phi = (\exists x)\lnot \Phi$$
+$$\lnot (\exists x) \Phi = (\forall x)\lnot \Phi$$
+
+\textbf{Теорема 4 (взаимосвязь кванторов с конхюнкцией и дизъюнкцией)}.
+$$(\forall x)(\Phi \land \Psi) \eq (\forall x)\Phi \land (\forall x)\Psi$$
+$$(\exists x)(\Phi \lor \Psi) \eq (\exists x)\Phi \lor (\exists x)\Psi$$
+
+\textbf{Теорема 5 (взаимосвязь кванторов с импликацией)}. Если в $\Phi$ предметная переменная $x$ не входит свободно, то
+$$(\forall x)(\Phi \then \Psi) = \Phi \then (\forall x)\Psi$$
+$$(\exists x)(\Phi \then \Psi) = \Phi \then (\exists x)\Psi$$
+Если в $\Psi$ предметная переменная $x$ не входит свободно, то
+$$(\forall x)(\Phi \then \Psi) = (\exists x)\Phi \then \Psi$$
+$$(\exists x)(\Phi \then \Psi) = (\forall x)\Phi \then \Psi$$
+
+\textit{Я, как составитель всего этого информационного кладища, не знаю, про какие именно свойства логических операций здесь идёт речь}

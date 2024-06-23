@@ -59,4 +59,15 @@ $$(\exists x)(\Phi \then \Psi) = (\forall x)\Phi \then \Psi$$
 
 
 \subsection{Свойства логических операций над предикатами}
+\textit{Почему-то материал отсутствует в конспектах\dots}
 \subsection{Логическое следование формул алгебры предикатов}
+\dftion Формула $\Phi$ алгебры предикатов называется \textbf{логическим следствием} формулы $\Psi$, если $\vDash \Phi \then \Psi$, т. е. в любой интерпретации $M$ формула истинна при любой оценке переменных $\alpha$, при которой истинна $\Psi$.
+
+\dftion Формула $\Phi$ называется \textbf{логичесим следствием} множеста $\Gamma$, если в любой интерпретации $M$ формула $\Phi$ истинна при любой переменных $\alpha$, если истинны все формулы из $\Gamma$: $\Gamma \vDash \Phi$.
+
+\underline{Лемма (критерии логического следования)}. Условие $\xses[\Phi] \vDash$ равносильно каждому из следующих условий:
+\begin{enumerate}
+    \item $\Phi_1 \land \dots \land \Phi_n \vDash \Phi$
+    \item $\vDash \Phi_1 \land \dots \land \Phi_n \then \Phi$
+    \item $\Phi_1 \land \dots \land \Phi_n \land \lnot \Phi \vDash$
+\end{enumerate}
