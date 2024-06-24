@@ -1,1 +1,28 @@
 \section{Аксиомы и правила вычисления высказываний. Доказуемость формул}
+Множество теорем $Ax(\text{ИВ})$ описывается следующими тремя аксиомами:
+
+\begin{enumerate}
+    \item $(A_1)$: $\Phi \then (\Psi \then \Phi)$
+    \item $(A_1)$: $(\Phi \then (\Psi \then \Xi)) \then ((\Phi \then \Psi) \then (\Phi \then \Xi))$
+    \item $(A_2)$: $(\lnot \Phi \then \lnot \Psi) \then ((\lnot \Phi \then \Psi) \then \Phi)$
+\end{enumerate}
+
+\dftion Правило вывода исчисления высказываний --- \textbf{правило заключения} (modus ponens):
+
+$$
+MP: \begin{matrix}
+    \Phi \then \Psi, \Phi \\
+    \Psi
+\end{matrix}
+$$
+
+\dftion Формула $\Phi$ --- \textbf{теорема исчисления высказываний}, если найдётся конечная последовательность $\xses[\Phi]$ такая, что
+
+\begin{enumerate}
+    \item $\Phi_n = \Phi$
+    \item Каждая формула $\Phi_i$ либо является аксиомой, либо получается из некоторых двух предыдущих формул $\Phi_j, \Phi_k$ по правилу вывода MP.
+\end{enumerate}
+
+Последовательность формул $\xses[\Phi]$ называется \textbf{выводом} или \textbf{доказательством} формулы $\Phi$.
+
+\dftion Вывод формулы $\Phi$ сокращённо обозначают символом $\vdash$ и говорят, что $\Phi$ есть теорема. Множество всех таких теорем обозначается символом $Th(\text{ИВ})$ и называется \textbf{теорией исичления высказываний}.

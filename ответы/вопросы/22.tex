@@ -1,1 +1,27 @@
 \section{Аксиомы и правила вывода исчисления предикатов. Тождественная истинность выводимых формул}
+Множество $Ax(\text{ИП})$ содержит в себе пять аксиом:
+
+\begin{enumerate}
+    \item $(A_1)$: $\Phi \then (\Psi \then \Phi)$
+    \item $(A_2)$: $(\Phi \then (\Psi \then \Xi)) \then ((\Phi \then \Psi) \then (\Psi \then \Xi))$
+    \item $(A_3)$: $(\lnot \Phi \then \lnot \Psi) \then ((\lnot \Phi \then \Psi) \then \Phi)$
+    \item $(A_4)$: $(\forall x)\Phi(x) \then \Phi(y)$ для формул $\Phi(x)$, в которые $x$ не входит связно
+    \item $(A_5)$: $(\forall x)(\Phi \then \Psi(x)) \then (\Phi \then (\forall x)\Psi(x))$ для формул $\Phi$, в которые $x$ не входит свободно
+\end{enumerate}
+
+Исчисление предикатов имеет два правила вывода --- \textbf{правило заключения} (modus ponens) и \textbf{правило обобщения}:
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}ccc@{}}
+        $MP: \begin{matrix}
+            \Phi \then \Psi, \Phi \\
+            \Psi
+        \end{matrix}$ &
+        и &
+        $Gen: \begin{matrix}
+            \Phi \\
+            (\forall x)\Phi
+        \end{matrix}$.
+    \end{tabular*}
+\end{figure}
