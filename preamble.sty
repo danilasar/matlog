@@ -25,8 +25,6 @@
 \usepackage{float}
 \pgfplotsset{compat = newest}
 
-\usepackage{minted}
-\setminted[c++]{linenos, breaklines = true, style = bw, fontsize = \small}
 
 \usepackage{mathrsfs}
 
@@ -40,6 +38,14 @@
 %]{geometry}%
 
 \usepackage{adjustbox}
+
+\usetikzlibrary{circuits}
+\usetikzlibrary{circuits.ee}
+\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{circuits.logic.IEC}
+\usetikzlibrary{circuits.logic.US}
+\usetikzlibrary{shapes.gates.ee}
+\usetikzlibrary {shapes.gates.logic.IEC}
 
 \newcommand{\dftion}{{\bf Определение.}\,}
 \newcommand{\ex}{{\bf Пример.}\,}

@@ -19,7 +19,7 @@
     \item $x \leftarrow y$ --- обратная импликация
 \end{itemize}
 
-\dftion \textbf{Суперпозицией} булевых функций $g(y_1,\dots,y_m)$ и $h_1(x_1,\dots,x_n),$ $\dots,h_m(x_1,\dots,x_n)$ называется булева функция $f(x_1, \dots, x_n)$, значения которой определяются по формуле:
+\dftion \textbf{Суперпозицией} булевых функций $g(y_1,~~\dots,~~y_m)$ и $h_1(x_1,~~\dots,~~x_n),$ $\dots,~h_m(x_1, ~~\dots,~~$ $x_n)$ называется булева функция $f(x_1, ~~ \dots,~~$ $x_n)$, значения которой определяются по формуле:
 $$f(x_1,\dots,x_n) = g(h_1(x_1,\dots,x_n), \dots, h_m(x_1,\dots,x_n)).$$
 Для упрощения записи суперпозиции булевых функций скобки по возможности опускаются с учётом следующего приоритета выполнения булевых операций: $',\cdot$ и затем все остальные операции.
 
@@ -91,6 +91,33 @@ $$f(x_1,\dots,x_n) = \underset{(j_1,\dots,j_k)}\oplus x_{i_1}\dots x_{i_k} \oplu
 
 Условимся обозначать символом 1 протекание тока в проводниках и символом 0 --- отсутствие тока в проводниках.
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[circuit logic IEC,use IEC style logic gates,circuit ee IEC]
+        %\tikzset{every node/.style={shape=and gate IEC, logic gate inputs=ini,logic gate input sep=0.5cm}}
+        \matrix[column sep=7mm]
+        {
+                           &                                &                                                                     & \node [logic gate symbol align={bottom, right}, draw] (P2) {$P_2$};  &              & \\
+                           &                                & \node [logic gate symbol align={bottom, right}, draw] (P1) {$P_1$}; &                                                                      & \node (c){}; & \\
+                           &                                &                                                                     & \node [logic gate symbol align={bottom, right}, draw] (P3) {$P_3$};  &              & \\
+            \node (A) {A}; & \node [/tikz/contact] (i) {};  &                                                                     &                                                                      &              & \node [/tikz/contact] (o) {}; & \node (B) {B}; \\
+                           &                                & \node [logic gate symbol align={bottom, right}, draw] (P4) {$P_4$}; & \node [logic gate symbol align={bottom, right}, draw] (P5) {$P_5$};  &              & \\
+                           &                                &                                                                     &                                                                      &              & \\
+        };
+        \draw (i.east)  -- ++(right:3mm) |- (P1.west);
+        \draw (i.east)  -- ++(right:3mm) |- (P4.west);
+        \draw (P1.east) -- ++(right:3mm) |- (P2.west);
+        \draw (P1.east) -- ++(right:3mm) |- (P3.west);
+        \draw (P2.east) -- ++(right:3mm) |- (c.west);
+        \draw (P3.east) -- ++(right:3mm) |- (c.west);
+        \draw (c.west)  -- ++(right:3mm) |- (o.west);
+        \draw (P4.east) -- ++(right:3mm) |- (P5.west);
+        \draw (P5.east) -- ++(right:3mm) |- (o.west);
+    \end{tikzpicture}
+    \label{fig:ps1}
+    \caption{Переключательная схема}
+\end{figure}
+
 \dftion \textbf{Переключатель} --- электромагнитное реле с контактами и индукционной катушкой, состояние которой медлируется булевой переменной $x$: $x = 1$ --- в катушке идёт ток, и $x = 0$ --- в катушке тока нет.
 
 Контакты реле --- замыкающие или размыкающие.
@@ -99,7 +126,68 @@ $$f(x_1,\dots,x_n) = \underset{(j_1,\dots,j_k)}\oplus x_{i_1}\dots x_{i_k} \oplu
 
 Через \textit{размыкающий контакт} реле ток проходит в том и только в том случае, если $x = 0$ --- такой контакт моделируется отрицанием булевой переменной $x'$.
 
-Переключатели $p, q$ могут быть соединены последовательно и параллельно. Через последовательно соединённые переключатели ток проходит в том и только в том случае, если $p=q=1$ --- такое соединение моделируется булевым многочленом $pq$.
+\underline{Пример}. Пусть в ПС на рис. \ref{fig:ps1} переключатели $P_1, P_5$ имеют общую катушку реле с током $x_1$ и переключатели $P_2, P_4$ имеют общую катущку реле с током $x_2$, причём контакты $P_1, P_2, P_3$ --- замыкающие контакты и контакты $P_3, P_5$ --- размыкающие. Тогда такая ПС с помощью булевых переменных $x_1, x_2, x_3$ изображается следующей диаграммой:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[circuit logic IEC,use IEC style logic gates,circuit ee IEC]
+        %\tikzset{every node/.style={shape=and gate IEC, logic gate inputs=ini,logic gate input sep=0.5cm}}
+        \matrix[column sep=7mm]
+        {
+                                           &                                                               & \node [logic gate symbol align={bottom, right}] (P2) {$x_2$};  &              & \\
+                                           & \node [logic gate symbol align={bottom, right}] (P1) {$x_1$}; &                                                                & \node (c){}; & \\
+                                           &                                                               & \node [logic gate symbol align={bottom, right}] (P3) {$x_3'$}; &              & \\
+            \node [/tikz/contact] (i) {};  &                                                               &                                                                &              & \node [/tikz/contact] (o) {}; \\
+                                           & \node [logic gate symbol align={bottom, right}] (P4) {$x_2$}; & \node [logic gate symbol align={bottom, right}] (P5) {$x_1'$}; &              & \\
+                                           &                                                               &                                                                &              & \\
+        };
+        \draw (i.east)  -- ++(right:3mm) |- (P1.west);
+        \draw (i.east)  -- ++(right:3mm) |- (P4.west);
+        \draw (P1.east) -- ++(right:3mm) |- (P2.west);
+        \draw (P1.east) -- ++(right:3mm) |- (P3.west);
+        \draw (P2.east) -- ++(right:3mm) |- (c.west);
+        \draw (P3.east) -- ++(right:3mm) |- (c.west);
+        \draw (c.west)  -- ++(right:3mm) |- (o.west);
+        \draw (P4.east) -- ++(right:3mm) |- (P5.west);
+        \draw (P5.east) -- ++(right:3mm) |- (o.west);
+    \end{tikzpicture}
+    \label{fig:ps2}
+    \caption{Диаграмма ПС с булевыми переменными}
+\end{figure}
+
+Переключатели $p, q$ могут быть соединены последовательно и параллельно.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[circuit logic IEC,use IEC style logic gates,circuit ee IEC]
+        %\tikzset{every node/.style={shape=and gate IEC, logic gate inputs=ini,logic gate input sep=0.5cm}}
+        \matrix[column sep=7mm]
+        {
+             \node [logic gate symbol align={bottom, right}, draw] (p) {$p$}; & \node [logic gate symbol align={bottom, right}, draw] (q) {$q$};  &               \\
+        };
+        \draw (p.east)  -- ++(right:3mm) |- (q.west);
+        \draw (q.east)  -- ++(right:3mm);
+        \draw (p.west)  -- ++(left:3mm);
+    \end{tikzpicture}
+    \begin{tikzpicture}[circuit logic IEC,use IEC style logic gates,circuit ee IEC]
+        %\tikzset{every node/.style={shape=and gate IEC, logic gate inputs=ini,logic gate input sep=0.5cm}}
+        \matrix[column sep=7mm]
+        {
+                          & \node [logic gate symbol align={bottom, right}, draw] (P2) {$p$};  &               \\
+            \node (P1){}; &                                                                      & \node (c){};  \\
+                          & \node [logic gate symbol align={bottom, right}, draw] (P3) {$q$};  &               \\
+        };
+        \draw (P1.east) -- ++(right:3mm) |- (P2.west);
+        \draw (P1.east) -- ++(right:3mm) |- (P3.west);
+        \draw (P2.east) -- ++(right:3mm) |- (c.west);
+        \draw (P3.east) -- ++(right:3mm) |- (c.west);
+        \draw (c.west)  -- ++(right:3mm);
+    \end{tikzpicture}
+    \label{fig:ps3}
+    \caption{Последовательное (слева) и параллельное (справа) соединение}
+\end{figure}
+
+Через последовательно соединённые переключатели ток проходит в том и только в том случае, если $p=q=1$ --- такое соединение моделируется булевым многочленом $pq$.
 
 Через параллельно соединённые переключатели $p,q$ ток не проходит в том и только в том случае, если $p=q=0$ --- такое соединение моделируется булевым многочленом $p+q$.
 
@@ -114,6 +202,26 @@ $$f(x_1,\dots,x_n) = \underset{(j_1,\dots,j_k)}\oplus x_{i_1}\dots x_{i_k} \oplu
 
 Графически такое устройство изображается диаграммой в виде прямоугольника с $n$ входами и одним выходом.
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[circuit logic IEC,use IEC style logic gates,circuit ee IEC]
+        \matrix[column sep=7mm]
+    {
+        \node (i0b) {$a_1$}; & \node [/tikz/contact] (i0) {}; &                            & \\
+        &                &                            & \\
+        \node (i1b) {$a_2$}; & \node [/tikz/contact] (i1) {}; & \node [logic gate symbol align={bottom, right}, draw] (a1) {P};  & \node[/tikz/current direction](o){}; & \node (o2) {$p(\xses[a])$};\\
+                        &                            & \\
+        \node (i2b) {$a_3$}; & \node [/tikz/contact] (i2) {}; &                            & \\
+    };
+    \draw (i0.east) -- ++(right:3mm) |- (a1.west);
+    \draw (i1.east) -- ++(right:3mm) |- (a1.west);
+    \draw (i2.east) -- ++(right:3mm) |- (a1.west);
+    \draw (a1.east) -- ++(right:3mm) |- (o.west);
+    \end{tikzpicture}
+    \label{fig:ps4}
+    \caption{}
+\end{figure}
+
 Простейшие булевы многочлены моделируют ПС, которые называются \textit{логическими элементами} (или \textit{вентилями}) и обозначаются специальными диаграммами.
 
 \underline{Пример}.
@@ -122,22 +230,117 @@ $$f(x_1,\dots,x_n) = \underset{(j_1,\dots,j_k)}\oplus x_{i_1}\dots x_{i_k} \oplu
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{графика/not.png}
+    \begin{tikzpicture}[circuit logic US]
+        \matrix[column sep=7mm]
+        {
+            \node (i1) {$a$}; & \node [/tikz/current direction] (a1) { };  & \node (o) {$a$}; \\
+        };
+        \draw (i1.east) -- ++(right:3mm) |- (a1.east);
+        \draw (a1.west) -- ++(right:3mm) |- (o.west);
+    \end{tikzpicture}
 \end{figure}
+
 
 AND-элемент:
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{графика/and.png}
+        \centering
+        \begin{tikzpicture}[circuit logic US]
+            \matrix[column sep=7mm]
+        {
+            \node (i0) {$a_1$}; &                            & \\
+                            &                            & \\
+            \node (i1) {$a_2$}; & \node [and gate,inputs={inini}] (a1) {P};  & \node (o) {$a_1 \cdot a_2 \cdot \dots \cdot a_n$};\\
+                            &                            & \\
+            \node (i2) {$a_3$}; &                            & \\
+        };
+        \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
+        \draw (i1.east) -- ++(right:3mm) |- (a1.input 3);
+        \draw (i2.east) -- ++(right:3mm) |- (a1.input 5);
+        \draw (a1.output) -- ++(right:3mm) |- (o.west);
+        \draw (o.east) -- ++(right:3mm);
+        \end{tikzpicture}
 \end{figure}
 
 OR-элемент:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{графика/or.png}
+    \begin{tikzpicture}[circuit logic US]
+        \matrix[column sep=7mm]
+    {
+        \node (i0) {$a_1$}; &                            & \\
+                        &                            & \\
+        \node (i1) {$a_2$}; & \node [or gate,inputs={inini}] (a1) {};  & \node (o) {$a_1 + a_2 + \dots + a_n$};\\
+                        &                            & \\
+        \node (i2) {$a_3$}; &                            & \\
+    };
+    \draw (i0.east) -- ++(right:3mm) |- (a1.input 1);
+    \draw (i1.east) -- ++(right:3mm) |- (a1.input 3);
+    \draw (i2.east) -- ++(right:3mm) |- (a1.input 5);
+    \draw (a1.output) -- ++(right:3mm) |- (o.west);
+    \draw (o.east) -- ++(right:3mm);
+    \end{tikzpicture}
 \end{figure}
+
+\underline{Пример 1}.
+Построим ПС, которая моделирует сложение двух двоичных цифр и называется \textit{полусумматором}. Такая ПС имеет два входа $a_1,a_2$ и два выхода $\vec s(a_1, a_2), \vec c(a_1, a_2)$, которые описывают два разряда суммы $a_1 + a_2$. Таблица этих булевых функций имеет следующий вид:
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $a_1$ & $a_2$ & $\vec s(a_1, a_2)$ & $\vec c(a_1, a_2)$ \\
+        \hline
+        0     & 0     & 0                  & 0                  \\
+        0     & 1     & 1                  & 0                  \\
+        1     & 0     & 1                  & 0                  \\
+        1     & 1     & 0                  & 1                  \\
+        \hline
+    \end{tabular}
+\end{figure}
+
+Получаем булевы функции:
+
+\begin{itemize}
+    \item $c(x_1, x_2) = x_1 \cdot x_2$,
+    \item $s(x_1, x_2) = x_1' x_2 + x_2'$,
+    \item $s(x_1, x_2) = x_1 \oplus x_2 = (x_1 \leftrightarrow x_2)' = (x_1 \cdot x_2 + x' \cdot x_2') = c' \cdot (x_1 + x_2)$
+\end{itemize}
+
+Полусумматор представляется диаграммой:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[circuit logic US]
+    \matrix[column sep=7mm]
+    {
+        \node (i0) {$a_1$}; &                            & \\
+                        & \node [and gate] (a1) {};  & & \node (cdot) {$a_1 \cdot a_2$}; \\
+                        &                            & \node [and gate] (o) {}; & \node (oplus) {$a_1 \oplus a_2$}; \\
+                        & \node [or gate] (a2) {}; & \\
+        \node (i1) {$a_2$}; &                            & \\
+    };
+    \draw (i0.east) -- ++(right:2mm) |- (a1.input 1);
+    \draw (i1.east) -- ++(right:4mm) |- (a1.input 2);
+    \draw (i0.east) -- ++(right:2mm) |- (a2.input 1);
+    \draw (i1.east) -- ++(right:4mm) |- (a2.input 2);
+    \draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+    \draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+    \draw (a1.output) -- ++(right:3mm) |- (cdot.west);
+    \draw (o.output) -- ++(right:3mm);
+    \end{tikzpicture}
+\end{figure}
+
+Символически полусумматор изображается диаграммой:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{графика/polusum.png}
+\end{figure}
+
+\dftion \textit{Сложностью} ПС называется число логических элементов в этой схеме.
+
+Полусумматор реализуется ПС сложности 4.
 
 \textbf{Теорема 1}. Суммирование двух $n$-разрядных двоичных чисел реализуется ПС сложности $9n-5$, которая обозначается $S_n$ и называется \textit{сумматором} порядка $n$.
 
